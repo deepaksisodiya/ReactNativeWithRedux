@@ -9,8 +9,8 @@ import {
   View
 } from 'react-native';
 
-import Counter from './Components/Counter';
-import User from './Components/User';
+import Counter from './components/Counter';
+import User from './components/User';
 
 export default class App extends Component {
   render() {

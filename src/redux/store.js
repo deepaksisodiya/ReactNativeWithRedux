@@ -6,8 +6,8 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import logger from 'redux-logger';
 
-import CounterReducer from './modules/Counter';
-import UserReducer from './modules/User';
+import CounterReducer from './modules/counter';
+import UserReducer from './modules/user';
 
 let rootReducer = combineReducers({CounterReducer, UserReducer});
 
