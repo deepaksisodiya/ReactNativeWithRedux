@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 
 
 
-import {createStore} from 'redux';
+import {createStore, combineReducers} from 'redux';
 
 let initialState = {
   counter: 0,
@@ -56,7 +56,32 @@ let CounterReducer = (state = initialState, action) => {
   return state;
 };
 
-let store = createStore(CounterReducer);
+const initialState2 = {
+  name:'Deepak',
+  age:25,
+};
+
+let UserReducer = (state = initialState2, action) => {
+  switch(action.type) {
+    case 'SET_NAME':
+      state = {
+        ...state,
+        name: action.payload,
+      };
+      break;
+    case 'SET_AGE':
+      state = {
+        ...state,
+        age: action.payload,
+      };
+      break;
+  }
+  return state;
+};
+
+let rootReducer = combineReducers({CounterReducer, UserReducer});
+
+let store = createStore(rootReducer);
 
 store.subscribe(() => {
   console.log('store updated ', store.getState());
@@ -72,4 +97,9 @@ store.dispatch({
 
 store.dispatch({
   type:'DECREMENT',
+});
+
+store.dispatch({
+  type:'SET_NAME',
+  payload: 'Chetan'
 });
