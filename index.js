@@ -32,7 +32,9 @@ const styles = StyleSheet.create({
 
 
 
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+
+import logger from 'redux-logger';
 
 let initialState = {
   counter: 0,
@@ -81,7 +83,12 @@ let UserReducer = (state = initialState2, action) => {
 
 let rootReducer = combineReducers({CounterReducer, UserReducer});
 
-let store = createStore(rootReducer);
+let myLogger = (store) => (next) => (action) => {
+  console.log('Action ', action);
+  next(action);
+};
+
+let store = createStore(rootReducer, {}, applyMiddleware(logger()));
 
 store.subscribe(() => {
   console.log('store updated ', store.getState());
