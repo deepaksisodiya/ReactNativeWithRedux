@@ -10,12 +10,14 @@ import {
 } from 'react-native';
 
 import Counter from './Components/Counter';
+import User from './Components/User';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
         <Counter />
+        <User />
       </View>
     );
   }
