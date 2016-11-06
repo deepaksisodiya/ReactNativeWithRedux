@@ -4,11 +4,9 @@
 
 
 import {createStore, combineReducers, applyMiddleware} from 'redux';
-
 import logger from 'redux-logger';
 
 import CounterReducer from './modules/Counter';
-
 import UserReducer from './modules/User';
 
 let rootReducer = combineReducers({CounterReducer, UserReducer});

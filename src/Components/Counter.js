@@ -5,12 +5,10 @@
 
 import React, { Component } from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   TouchableHighlight
 } from 'react-native';
-
 import {connect} from 'react-redux';
 
 class Counter extends Component {

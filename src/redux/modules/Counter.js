@@ -3,11 +3,11 @@
  */
 
 
-let initialState = {
+const initialState = {
   counter: 0,
 };
 
-let CounterReducer = (state = initialState, action) => {
+const CounterReducer = (state = initialState, action) => {
   switch(action.type) {
     case 'INCREMENT':
       state = {

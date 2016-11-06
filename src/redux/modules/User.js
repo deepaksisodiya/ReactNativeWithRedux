@@ -8,7 +8,7 @@ const initialState = {
   age:25,
 };
 
-let UserReducer = (state = initialState, action) => {
+const UserReducer = (state = initialState, action) => {
   switch(action.type) {
     case 'SET_NAME':
       state = {
