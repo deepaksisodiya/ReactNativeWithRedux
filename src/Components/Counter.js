@@ -11,38 +11,43 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-export default class Counter extends Component {
+import {connect} from 'react-redux';
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      counter:0
-    };
-  }
-
-  onIncrement = () => {
-    this.setState({
-      counter:this.state.counter + 1,
-    });
-  };
-
-  onDecrement = () => {
-    this.setState({
-      counter:this.state.counter - 1,
-    });
-  };
-
+class Counter extends Component {
   render() {
     return (
       <View>
-        <Text>{this.state.counter}</Text>
-        <TouchableHighlight onPress={this.onIncrement}>
+        <Text>{this.props.counter}</Text>
+        <TouchableHighlight onPress={() => this.props.onIncrement()}>
           <Text>Increment</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={this.onDecrement}>
+        <TouchableHighlight onPress={() => this.props.onDecrement()}>
           <Text>Decrement</Text>
         </TouchableHighlight>
       </View>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    counter: state.CounterReducer.counter,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onIncrement: () => {
+      dispatch({
+        type: 'INCREMENT'
+      });
+    },
+    onDecrement: () => {
+      dispatch({
+        type: 'DECREMENT'
+      });
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
