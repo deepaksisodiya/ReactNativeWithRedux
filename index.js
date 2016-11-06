@@ -29,3 +29,47 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
 });
+
+
+
+import {createStore} from 'redux';
+
+let initialState = {
+  counter: 0,
+};
+
+let CounterReducer = (state = initialState, action) => {
+  switch(action.type) {
+    case 'INCREMENT':
+      state = {
+        ...state,
+        counter: state.counter + 1,
+      };
+      break;
+    case 'DECREMENT':
+      state = {
+        ...state,
+        counter: state.counter - 1,
+      };
+      break;
+  }
+  return state;
+};
+
+let store = createStore(CounterReducer);
+
+store.subscribe(() => {
+  console.log('store updated ', store.getState());
+});
+
+store.dispatch({
+  type:'INCREMENT',
+});
+
+store.dispatch({
+  type:'INCREMENT',
+});
+
+store.dispatch({
+  type:'DECREMENT',
+});
